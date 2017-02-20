@@ -5,16 +5,26 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
 	public GameObject player;
+	public float distanceAway;
+	public float distanceUp;
+	public float smooth;
 
-	private Vector3 offset;
+	private Vector3 targetPosition;
 
-	void Start () 
+	Transform follow;
+
+	void Start()
 	{
-		offset = transform.position - player.transform.position;
+		follow = player.transform;
 	}
 
 	void LateUpdate () 
 	{
-		transform.position = player.transform.position + offset;
+		targetPosition = follow.position + Vector3.up * distanceUp - follow.forward * distanceAway;
+
+		transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * smooth);
+
+		transform.LookAt (follow);
 	}
+		
 }

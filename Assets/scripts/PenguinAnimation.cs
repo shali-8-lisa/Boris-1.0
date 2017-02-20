@@ -37,22 +37,22 @@ public class PenguinAnimation : MonoBehaviour {
 
 	void Update () 
 	{
-		if (Input.GetKey ("r"))
+		if (Input.GetKey ("1"))
 			resetPose ();
 
-		if (Input.GetKey ("j")) 
+		if (Input.GetKey ("2")) 
 		{
 			resetPose ();
 			jumpPose ();
 		}
 
-		if (Input.GetKey ("w")) 
+		if (Input.GetKey ("3")) 
 		{
 			resetPose ();
 			isWalking = 1;
 		}
 
-		if (Input.GetKey ("d")) 
+		if (Input.GetKey ("4")) 
 		{
 			resetPose ();
 			isDroning = 1;
