@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{8122F244-BC9C-7539-991C-547AB3A49418}") = "Boris 1.0", "Assembly-CSharp.csproj", "{2CF0FAD9-F197-102F-1C3C-7349923BD746}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CF0FAD9-F197-102F-1C3C-7349923BD746}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CF0FAD9-F197-102F-1C3C-7349923BD746}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CF0FAD9-F197-102F-1C3C-7349923BD746}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CF0FAD9-F197-102F-1C3C-7349923BD746}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
