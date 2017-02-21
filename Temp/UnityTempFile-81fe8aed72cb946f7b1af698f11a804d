@@ -80,6 +80,7 @@
 -define:UNITY_EDITOR_64
 -define:UNITY_EDITOR_OSX
 'Assets/scripts/CameraController.cs'
+'Assets/scripts/FishController.cs'
 'Assets/scripts/PenguinAnimation.cs'
 'Assets/scripts/PlayerController.cs'
 -r:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/System.Runtime.Serialization.dll'

@@ -9,9 +9,8 @@ public class CameraController : MonoBehaviour {
 	public float distanceUp;
 	public float smooth;
 
+	private Transform follow;
 	private Vector3 targetPosition;
-
-	Transform follow;
 
 	void Start()
 	{

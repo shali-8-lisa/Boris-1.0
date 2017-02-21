@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 
 	public float speed;
 	public float speedR;
+	public GameObject fish;
 
 	void Start ()
 	{
@@ -22,6 +23,10 @@ public class PlayerController : MonoBehaviour {
 		float moveVertical = Input.GetAxis ("Vertical");
 		transform.Translate (moveHorizontal * speed * Time.deltaTime, 0.0f, moveVertical * speed * Time.deltaTime);
 		transform.Rotate (Vector3.up * moveHorizontal * speedR * Time.deltaTime);
+
+		//Throw fish
+		if (Input.GetMouseButtonDown (0))
+			Instantiate (fish, transform.position, Quaternion.identity);
 	}
 
 
