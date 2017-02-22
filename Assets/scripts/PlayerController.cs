@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour {
 
 	void Start ()
 	{
-
 	}
 
 	void Update ()
@@ -24,10 +23,28 @@ public class PlayerController : MonoBehaviour {
 		transform.Translate (moveHorizontal * speed * Time.deltaTime, 0.0f, moveVertical * speed * Time.deltaTime);
 		transform.Rotate (Vector3.up * moveHorizontal * speedR * Time.deltaTime);
 
-		//Throw fish
+		//Throw fish - to where clicked
 		if (Input.GetMouseButtonDown (0))
 			Instantiate (fish, transform.position, Quaternion.identity);
+
+		RaycastHit hit;
+		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		Debug.DrawRay (transform.position, ray.direction * 100, Color.black);
+
+		if (Physics.Raycast (ray, out hit)) 
+		{
+			//FishController.targetPos = hit.point;
+
+
+			if (hit.collider.tag == "Glacier") 
+			{
+				Debug.Log ("Hit");
+				FishController.targetPos = hit.point;
+			} 
+			else
+				Debug.Log ("No Hit");
+		}
+		
+
 	}
-
-
 }
