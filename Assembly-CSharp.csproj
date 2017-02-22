@@ -49,6 +49,7 @@
      <Compile Include="Assets\scripts\CameraController.cs" />
      <Compile Include="Assets\scripts\FishController.cs" />
      <Compile Include="Assets\scripts\PenguinAnimation.cs" />
+     <Compile Include="Assets\scripts\PenguinController.cs" />
      <Compile Include="Assets\scripts\PlayerController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

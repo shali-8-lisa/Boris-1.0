@@ -38,8 +38,11 @@ public class FishController : MonoBehaviour {
 			yield return null;
 		}
 
-		if (isFed)
+		if (isFed) 
+		{
 			Destroy (gameObject);
+			PenguinController.Hunger--;
+		}
 	}
 }
 
