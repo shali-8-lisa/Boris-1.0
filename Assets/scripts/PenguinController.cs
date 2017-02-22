@@ -16,6 +16,6 @@ public class PenguinController : MonoBehaviour {
 
 	void Update ()
 	{
-		Debug.Log ("Hunger: " + Hunger);
+		//Debug.Log ("Hunger: " + Hunger);
 	}
 }

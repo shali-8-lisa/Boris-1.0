@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
 
 public class Pathfinding : MonoBehaviour {
 
@@ -19,11 +20,13 @@ public class Pathfinding : MonoBehaviour {
 
 	void FindPath(Vector3 startPos, Vector3 targetPos) 
 	{
+		Stopwatch sw = new Stopwatch ();
+		sw.Start ();
 		Node startNode = grid.NodeFromWorldPoint(startPos);
 		Node targetNode = grid.NodeFromWorldPoint(targetPos);
 
 		//OPEN (the set of nodes to be evaluated)
-		List<Node> openSet = new List<Node>();
+		Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
 		//CLOSED (the set of nodes already evaluated)
 		HashSet<Node> closedSet = new HashSet<Node>();
 		//add the start node to OPEN
@@ -33,25 +36,13 @@ public class Pathfinding : MonoBehaviour {
 		while (openSet.Count > 0) 
 		{
 			//current = node in OPEN with the lowest f_cost
-			Node node = openSet[0];
-			for (int i = 1; i < openSet.Count; i++) 
-			{
-				if (openSet[i].fCost < node.fCost || openSet[i].fCost == node.fCost) 
-				{
-					if (openSet[i].hCost < node.hCost)
-						node = openSet[i];
-				}
-			}
+			Node node = openSet.RemoveFirst();
+			closedSet.Add (node);
 
-			//remove current from OPEN
-			openSet.Remove(node);
-			//add current to CLOSED
-			closedSet.Add(node);
-
-			//if current is the target node (path has been found)
-			//	return
 			if (node == targetNode) 
 			{
+				sw.Stop ();
+				print ("Path found: " + sw.ElapsedMilliseconds + "ms");
 				RetracePath(startNode,targetNode);
 				return;
 			}
@@ -78,8 +69,10 @@ public class Pathfinding : MonoBehaviour {
 					neighbour.parent = node;
 
 					//add neighbour to OPEN
-					if (!openSet.Contains(neighbour))
-						openSet.Add(neighbour);
+					if (!openSet.Contains (neighbour))
+						openSet.Add (neighbour);
+					else
+						openSet.UpdateItem (neighbour);
 				}
 			}
 		}
