@@ -24,25 +24,26 @@ public class PlayerController : MonoBehaviour {
 		transform.Rotate (Vector3.up * moveHorizontal * speedR * Time.deltaTime);
 
 		//Throw fish - to where clicked
-		if (Input.GetMouseButtonDown (0))
-			Instantiate (fish, transform.position, Quaternion.identity);
-
 		RaycastHit hit;
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		Debug.DrawRay (transform.position, ray.direction * 100, Color.black);
 
 		if (Physics.Raycast (ray, out hit)) 
 		{
-			//FishController.targetPos = hit.point;
+			if (hit.collider.tag == "Penguin") {
+				if (Input.GetMouseButtonDown (0)) {
+					FishController.targetPos = hit.point;
+					FishController.isPenguin = true;
+					Instantiate (fish, transform.position, Quaternion.identity);
+				}
+			} else if (hit.collider.tag == "Land") {
 
-
-			if (hit.collider.tag == "Glacier") 
-			{
-				Debug.Log ("Hit");
-				FishController.targetPos = hit.point;
-			} 
-			else
-				Debug.Log ("No Hit");
+				if (Input.GetMouseButtonDown (0)) {
+					FishController.targetPos = hit.point;
+					FishController.isPenguin = false;
+					Instantiate (fish, transform.position, Quaternion.identity);
+				}
+			}
 		}
 		
 

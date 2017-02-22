@@ -6,13 +6,19 @@ public class FishController : MonoBehaviour {
 
 	public float fishSpeed = 10;
 	public static Vector3 targetPos;
+	public static bool isPenguin;
 
 	private Vector3 landingPos;
+	private bool isFed;
 
 	void Start ()
 	{
 		landingPos = targetPos;
 		StartCoroutine (FishThrown ());
+		if (isPenguin)
+			isFed = true;
+		else
+			isFed = false;
 	}
 
 	IEnumerator FishThrown ()
@@ -31,6 +37,9 @@ public class FishController : MonoBehaviour {
 			transform.Translate (Vector3.forward * Mathf.Min (fishSpeed * Time.deltaTime, currentDist));
 			yield return null;
 		}
+
+		if (isFed)
+			Destroy (gameObject);
 	}
 }
 
