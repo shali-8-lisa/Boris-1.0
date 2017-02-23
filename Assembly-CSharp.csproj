@@ -50,7 +50,9 @@
      <Compile Include="Assets\scripts\FishController.cs" />
      <Compile Include="Assets\scripts\Pathfinding\Grid.cs" />
      <Compile Include="Assets\scripts\Pathfinding\Heap.cs" />
+     <Compile Include="Assets\scripts\Pathfinding\Line.cs" />
      <Compile Include="Assets\scripts\Pathfinding\Node.cs" />
+     <Compile Include="Assets\scripts\Pathfinding\Path.cs" />
      <Compile Include="Assets\scripts\Pathfinding\PathRequestManager.cs" />
      <Compile Include="Assets\scripts\Pathfinding\Pathfinding.cs" />
      <Compile Include="Assets\scripts\Pathfinding\Unit.cs" />
