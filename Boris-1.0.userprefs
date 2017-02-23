@@ -1,10 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/FishController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/Pathfinding/Pathfinding.cs">
     <Files>
-      <File FileName="Assets/scripts/PlayerController.cs" Line="46" Column="5" />
-      <File FileName="Assets/scripts/FishController.cs" Line="44" Column="31" />
-      <File FileName="Assets/scripts/PenguinController.cs" Line="15" Column="3" />
+      <File FileName="Assets/scripts/PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/FishController.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/PenguinController.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/Pathfinding/Unit.cs" Line="24" Column="33" />
+      <File FileName="Assets/scripts/Pathfinding/Pathfinding.cs" Line="20" Column="50" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
