@@ -7,40 +7,23 @@ public class Unit : MonoBehaviour {
 	const float minPathUpdateTime = 0.2f;
 	const float pathUpdateMoveThreshold = 0.5f;
 
+	public Transform BorisTransform;
+	public Transform FishTransform;
+	public Transform TestTransform;
 	public float speed = 15;
 	public float turnSpeed = 3;
 	public float turnDst = 5;
 	public float stoppingDst = 10;
 
 	public static int penguinTarget;
-	public static GameObject myFish;
 
 	Path path;
 
 	private Transform target;
-	private Transform BorisTransform;
-	private Transform TestTransform;
 
 	void Start() 
 	{
-		BorisTransform = GameObject.FindGameObjectWithTag ("Boris").transform;
-		TestTransform = GameObject.FindGameObjectWithTag ("Test").transform;
-		myFish = gameObject;
-
 		StartCoroutine (UpdatePath ());
-	}
-
-	void Update() 
-	{
-		//set up target for the Penguin
-		if (penguinTarget == 0)
-			target = gameObject.transform;
-		else if (penguinTarget == 1)
-			target = myFish.transform;
-		else if (penguinTarget == 2)
-			target = BorisTransform;
-		else
-			target = TestTransform;
 	}
 
 	public void OnPathFound(Vector3[] waypoints, bool pathSuccessful) 
@@ -58,6 +41,16 @@ public class Unit : MonoBehaviour {
 	{
 		if (Time.timeSinceLevelLoad < 0.3f) 
 			yield return new WaitForSeconds (0.3f);
+
+		//set up target for the Penguin
+		if (penguinTarget == 0)
+			target = gameObject.transform;
+		else if (penguinTarget == 1)
+			target = FishTransform;
+		else if (penguinTarget == 2)
+			target = BorisTransform;
+		else
+			target = TestTransform;
 				
 		PathRequestManager.RequestPath (new PathRequest(transform.position, target.position, OnPathFound));
 

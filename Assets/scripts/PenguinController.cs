@@ -12,8 +12,6 @@ public class PenguinController : MonoBehaviour {
 
 	void Start()
 	{
-		Hunger = UnityEngine.Random.Range (90, 120);
-
 		behaviorTree = CreateBehaviourTree();
 		blackboard = behaviorTree.Blackboard;
 
@@ -130,28 +128,9 @@ public class PenguinController : MonoBehaviour {
 
 	private void UpdatePenguinState ()
 	{
-		
-		GameObject fishFound = FindClosestFish();
-		Unit.myFish = fishFound;
-
-		Vector3 FishLocalPos = fishFound.transform.position;
-
-		Vector3 BorisLocalPos = this.transform.InverseTransformPoint(GameObject.FindGameObjectWithTag("Boris").transform.position);
-
-		if (Hunger == 0)
-			behaviorTree.Blackboard["full"] = true;
-		else
-			behaviorTree.Blackboard["full"] = false;
-
-		if (Hunger > 0 && FishLocalPos.magnitude < 15.0f)
-			behaviorTree.Blackboard["fishGo"] = true;
-		else
-			behaviorTree.Blackboard["fishGo"] = false;
-
-		if (Hunger > 0 && FishLocalPos.magnitude > 15.0f && BorisLocalPos.magnitude < 12.0f)
-			behaviorTree.Blackboard["BorisGo"] = true;
-		else
-			behaviorTree.Blackboard["BorisGo"] = false;
+		behaviorTree.Blackboard["full"] = false;
+		behaviorTree.Blackboard["fishGo"] = true;
+		behaviorTree.Blackboard["BorisGo"] = false;
 	}
 
 	private void PrintInfo (int flag)
@@ -186,26 +165,20 @@ public class PenguinController : MonoBehaviour {
 		Unit.penguinTarget = 3;
 	}
 
-	GameObject FindClosestFish() 
+
+	/*
+	void Start ()
 	{
-		GameObject[] collection;
-
-		collection = GameObject.FindGameObjectsWithTag("Fish");
-
-		GameObject closestFish = null;
-
-		float distance = Mathf.Infinity;
-
-		Vector3 position = transform.position;
-
-		foreach (GameObject currentFish in collection) {
-			Vector3 diff = currentFish.transform.position - position;
-			float currentDistance = diff.sqrMagnitude;
-			if (currentDistance < distance) {
-				closestFish = currentFish;
-				distance = currentDistance;
-			}
-		}
-		return closestFish;
+		Hunger = UnityEngine.Random.Range (90, 120);
 	}
+
+	void Update ()
+	{
+		float distance = Vector3.Distance (transform.position, Boris.transform.position);
+		if (distance < 15.0f)
+			Unit.penguinTarget = 1;
+
+		Debug.Log ("Hunger: " + Hunger);
+	
+	}*/
 }
