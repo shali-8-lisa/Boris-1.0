@@ -7,15 +7,18 @@ public class PenguinController : MonoBehaviour {
 
 	public static int Hunger;
 
-	private Blackboard blackboard;
+	private Blackboard sharedBlackboard;
+	private Blackboard ownBlackboard;
 	private Root behaviorTree;
 
 	void Start()
 	{
 		Hunger = UnityEngine.Random.Range (90, 120);
 
+		sharedBlackboard = UnityContext.GetSharedBlackboard ("penguin-union");
+		ownBlackboard = new Blackboard (sharedBlackboard, UnityContext.GetClock());
+
 		behaviorTree = CreateBehaviourTree();
-		blackboard = behaviorTree.Blackboard;
 
 		#if UNITY_EDITOR
 		Debugger debugger = (Debugger)this.gameObject.AddComponent(typeof(Debugger));
@@ -27,7 +30,7 @@ public class PenguinController : MonoBehaviour {
 
 	private Root CreateBehaviourTree()
 	{
-		return new Root (
+		return new Root (ownBlackboard,
 
 			new Service (0.125f, UpdatePenguinState,
 
@@ -138,19 +141,19 @@ public class PenguinController : MonoBehaviour {
 		Vector3 BorisLocalPos = this.transform.InverseTransformPoint(GameObject.FindGameObjectWithTag("Boris").transform.position);
 
 		if (Hunger == 0)
-			behaviorTree.Blackboard["full"] = true;
+			ownBlackboard["full"] = true;
 		else
-			behaviorTree.Blackboard["full"] = false;
+			ownBlackboard["full"] = false;
 
 		if (Hunger > 0 && fishLocalPos.magnitude < 15.0f)
-			behaviorTree.Blackboard["fishGo"] = true;
+			ownBlackboard["fishGo"] = true;
 		else
-			behaviorTree.Blackboard["fishGo"] = false;
+			ownBlackboard["fishGo"] = false;
 
 		if (Hunger > 0 && fishLocalPos.magnitude > 15.0f && BorisLocalPos.magnitude < 10.0f)
-			behaviorTree.Blackboard["BorisGo"] = true;
+			ownBlackboard["BorisGo"] = true;
 		else
-			behaviorTree.Blackboard["BorisGo"] = false;
+			ownBlackboard["BorisGo"] = false;
 	}
 
 	private void PrintInfo (int flag)
@@ -164,7 +167,7 @@ public class PenguinController : MonoBehaviour {
 		else
 			Debug.Log ("Penguin is wandering.");
 	}
-
+		
 	private void LieDown ()
 	{
 		Unit.penguinTarget = 0;
@@ -184,6 +187,7 @@ public class PenguinController : MonoBehaviour {
 	{
 		Unit.penguinTarget = 3;
 	}
+
 
 	GameObject FindClosestFish() 
 	{

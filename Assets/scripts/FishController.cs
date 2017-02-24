@@ -44,6 +44,15 @@ public class FishController : MonoBehaviour {
 			PenguinController.Hunger--;
 		}
 	}
+
+	void OnCollisionEnter(Collision other)
+	{
+		if (other.gameObject.tag == "Penguin")
+		{
+			Destroy (gameObject);
+			PenguinController.Hunger--;
+		}
+	}
 }
 
 /*

@@ -99,6 +99,7 @@ public class Unit : MonoBehaviour {
 
 			if (followingPath) 
 			{
+				
 				//slow down when gets close
 				if (pathIndex >= path.slowDownIndex && stoppingDst > 0) 
 				{
@@ -114,11 +115,39 @@ public class Unit : MonoBehaviour {
 
 			yield return null;
 		}
+
+		if (target.gameObject.tag == "Fish")
+			Destroy (target.gameObject);
+		else if (target.gameObject.tag == "Boris")
+			PlayerController.BorisSpeed -= 10;
 	}
 
 	public void OnDrawGizmos() 
 	{
 		if (path != null) 
 			path.DrawWithGizmos ();
+	}
+
+	GameObject FindClosestFish() 
+	{
+		GameObject[] fishCollection;
+		fishCollection = GameObject.FindGameObjectsWithTag("Fish");
+		GameObject closestFish = null;
+		float distance = Mathf.Infinity;
+		Vector3 position = transform.position;
+
+		foreach (GameObject currentFish in fishCollection) 
+		{
+			Vector3 diff = currentFish.transform.position - position;
+			float currentDistance = diff.sqrMagnitude;
+
+			if (currentDistance < distance) 
+			{
+				closestFish = currentFish;
+				distance = currentDistance;
+			}
+		}
+
+		return closestFish;
 	}
 }

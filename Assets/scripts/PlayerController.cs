@@ -11,12 +11,17 @@ public class PlayerController : MonoBehaviour {
 	public float speedR;
 	public GameObject fish;
 
+	public static float BorisSpeed;
+
 	void Start ()
 	{
+		BorisSpeed = speed * 20;
 	}
 
 	void Update ()
 	{
+		speed = BorisSpeed / 20;
+
 		//Run - tilt
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
