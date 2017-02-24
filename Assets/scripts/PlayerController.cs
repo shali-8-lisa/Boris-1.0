@@ -50,6 +50,20 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 		}
+
+		//Gravity
+		RaycastHit hitG;
+		Ray rayG = new Ray(transform.position, -transform.up);
+		Debug.DrawRay (transform.position, rayG.direction * 100, Color.black);
+
+		if (Physics.Raycast (rayG, out hitG)) 
+		{
+			if (hitG.collider.tag == "Ocean") {
+
+				transform.Translate (0.0f, -speed * Time.deltaTime, 0.0f);
+				
+			}
+		}
 		
 
 	}
