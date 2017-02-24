@@ -49,6 +49,8 @@
      <Compile Include="Assets\scripts\CameraController.cs" />
      <Compile Include="Assets\scripts\FishController.cs" />
      <Compile Include="Assets\scripts\GameController.cs" />
+     <Compile Include="Assets\scripts\GlacierController.cs" />
+     <Compile Include="Assets\scripts\LandController.cs" />
      <Compile Include="Assets\scripts\NPBehave\Blackboard.cs" />
      <Compile Include="Assets\scripts\NPBehave\Clock.cs" />
      <Compile Include="Assets\scripts\NPBehave\Composite\Composite.cs" />
@@ -95,6 +97,7 @@
      <Compile Include="Assets\scripts\PenguinAnimation.cs" />
      <Compile Include="Assets\scripts\PenguinController.cs" />
      <Compile Include="Assets\scripts\PlayerController.cs" />
+     <Compile Include="Assets\scripts\ScoreAndHealth.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
