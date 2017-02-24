@@ -7,13 +7,19 @@ public class Unit : MonoBehaviour {
 	const float minPathUpdateTime = 0.2f;
 	const float pathUpdateMoveThreshold = 0.5f;
 
-	public Transform target;
+	public Transform BorisTransform;
+	public Transform FishTransform;
+	public Transform TestTransform;
 	public float speed = 15;
 	public float turnSpeed = 3;
 	public float turnDst = 5;
 	public float stoppingDst = 10;
 
+	public static int penguinTarget;
+
 	Path path;
+
+	private Transform target;
 
 	void Start() 
 	{
@@ -30,13 +36,22 @@ public class Unit : MonoBehaviour {
 			StartCoroutine("FollowPath");
 		}
 	}
-
-	//follow Boris when he moves
+		
 	IEnumerator UpdatePath() 
 	{
 		if (Time.timeSinceLevelLoad < 0.3f) 
 			yield return new WaitForSeconds (0.3f);
 
+		//set up target for the Penguin
+		if (penguinTarget == 0)
+			target = gameObject.transform;
+		else if (penguinTarget == 1)
+			target = FishTransform;
+		else if (penguinTarget == 2)
+			target = BorisTransform;
+		else
+			target = TestTransform;
+				
 		PathRequestManager.RequestPath (new PathRequest(transform.position, target.position, OnPathFound));
 
 		float sqrMoveThreshold = pathUpdateMoveThreshold * pathUpdateMoveThreshold;
